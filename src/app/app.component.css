@@ -13,37 +13,8 @@ body {
     animation: background-change 25s infinite alternate;
 }
 
-.left-text {
-    display: flex;
-    justify-content: flex-end;
-    width: 300px;
-}
-
-.right-text {
-    width: 800px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-#text-view {
-    position: fixed;
-    top: 300px;
-    left: 0;
-    user-select: none;
-    font-size: 3em;
-    width: 100%;
-    display: flex;
-    white-space: pre;
-}
-
-.typ3rtext {
-    border-left: blue 1px solid;
-}
-
-
-.ok-text {
-    text-align: right;
-    color: blue;
+app-sidebar {
+    position: absolute;
 }
 
 @keyframes background-change {

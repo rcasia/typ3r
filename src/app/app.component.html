@@ -13,27 +13,7 @@
 
 </head>
 <body>
-    <!-- <label for="typed-text" class="title">
-        <span class="ok-text">TY</span>
-        <span class="nok-text">P</span>
-        3R</label>
-    
-    -->
-    <div id="text-view">
-        <div class="left-text">
-            <span
-                class="ok-text"
-                [ngModel]="passedCharacters"
-                name="passedCharacters" ngDefaultControl>{{passedCharacters}}</span>
-        </div>
-        <div class="right-text">
-            <span 
-                id="typ3rtext" 
-                class="typ3rtext" 
-                [ngModel]="renderedText"
-                name="hello" ngDefaultControl>{{renderedText}}</span>
-        </div>
-    </div>
-
+    <app-sidebar></app-sidebar>
+    <app-start></app-start>
 </body>
 </html>
