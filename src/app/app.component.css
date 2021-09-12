@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background-color: #12151F;
+    color: #05F4B7;
+    height: 100vh;
+    width: 100%;
+    animation: background-change 25s infinite alternate;
+}
+
+.left-text {
+    display: flex;
+    justify-content: flex-end;
+    width: 300px;
+}
+
+.right-text {
+    width: 800px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#text-view {
+    position: fixed;
+    top: 300px;
+    left: 0;
+    user-select: none;
+    font-size: 3em;
+    width: 100%;
+    display: flex;
+    white-space: pre;
+}
+
+.typ3rtext {
+    border-left: blue 1px solid;
+}
+
+
+.ok-text {
+    text-align: right;
+    color: blue;
+}
+
+@keyframes background-change {
+    0% {
+        background-color: #12151F;
+    }
+    100% {
+        background-color: #21092a;
+    }
+}
