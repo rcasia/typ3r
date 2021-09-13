@@ -6,6 +6,7 @@
                 class="ok-text"
                 [ngModel]="passedCharacters"
                 name="passedCharacters" ngDefaultControl>{{passedCharacters}}</span>
+            <span class="wrong-alert">{{wrongCharacter}}</span>
         </div>
         <div class="right-text">
             <span 
@@ -16,7 +17,8 @@
         </div>
     </div>
     <div class="context-text">
-        <span class="ok-text">{{ passedCharacters }}</span><span>{{ renderedText }}</span>
+        <span class="ok-text">{{ passedCharacters }}</span>
+        <span class="typ3rtext">{{ renderedText }}</span>
         
         <span class="velocimeter"> {{wordsPerMinute}} WPM</span>
     </div>

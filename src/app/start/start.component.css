@@ -1,11 +1,13 @@
+/*
 * {
     color: #8a1b86;
-}
+} 
+*/
 
 .left-text {
     display: flex;
     justify-content: flex-end;
-    width: 300px;
+    width: 50%;
 }
 
 .right-text {
@@ -56,7 +58,7 @@
 }
 
 .wrong-alert {
-    color:red;
+    color:#e30a59;
 }
 
 .context-text {
