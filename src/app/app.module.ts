@@ -9,15 +9,13 @@ import { AppComponent } from './app.component';
 import { StartComponent } from './start/start.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { StatsCounterComponent } from './stats-counter/stats-counter.component';
-import { VelocimeterComponent } from './velocimeter/velocimeter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
     SidebarComponent,
-    StatsCounterComponent,
-    VelocimeterComponent
+    StatsCounterComponent
   ],
   imports: [
     BrowserModule,

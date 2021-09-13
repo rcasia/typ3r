@@ -19,22 +19,22 @@ export class StartComponent implements AfterViewInit {
     initialTime: 60
   }
 
-  wordsPerMinute: number = 0
+  wordsPerMinute: number = 0;
 
   ready: Boolean = true;
   placeholder = `The argument in favor of using filler text goes something like this: If you use real content in the design process, anytime you reach a review point you'll end up reviewing and negotiating the content itself and not the design. This will just slow down the design process. Design first, with real content in mind (of course!), but don't drop in the real content until the design is well on its way. Using filler text avoids the inevitable argumentation that accompanies the use of real content in the design process.`
 
-  text = new Typ3rText(this.placeholder)
+  text = new Typ3rText(this.placeholder);
   renderedText = this.text.content;
   passedCharacters: string= '';
-  wrongCharacter: string = ''
+  wrongCharacter: string = '';
 
   totalTextView: any;
   typ3rTextElement: any;
 
 
   constructor() {
-    this.checkCharacters()
+    this.checkCharacters();
   }
 
   ngAfterViewInit() {
@@ -72,21 +72,21 @@ export class StartComponent implements AfterViewInit {
   }
 
   setCharacterRight(character: string): void {
-   this.passedCharacters += character 
+   this.passedCharacters += character;
 
-    this.renderedText = this.renderedText.slice(1)
+    this.renderedText = this.renderedText.slice(1);
   }
 
-  calculateWordsPerMinute() {
+  calculateWordsPerMinute(): void {
     const secondsFromZero = (this.data.initialTime - this.stats.seconds) || 1;
-    this.wordsPerMinute = Math.floor(this.data.words * 60 / secondsFromZero) || 0
+    this.wordsPerMinute = Math.floor(this.data.words * 60 / secondsFromZero) || 0;
   }
 
-  calculateAccuracy() {
-    const diff = this.data.characters || 0
-    const totalInputs = this.data.characters + this.data.mistakes;
-    const percentage = Math.round(( diff / totalInputs) * 100) 
+  calculateAccuracy(): void {
+    const characters = this.data.characters;
+    const totalInputs = characters + this.data.mistakes;
+    const percentage = Math.round(( characters / totalInputs) * 100) || 0;
 
     this.data.accuracy = percentage;
-  }
+   }
 }
