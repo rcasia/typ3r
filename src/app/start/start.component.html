@@ -1,0 +1,25 @@
+<ng-template [ngIf]="ready" [ngIfElse]="areYouReady" >
+    <app-stats-counter [data]="data"></app-stats-counter>
+    <div id="text-view" >
+        <div class="left-text">
+            <span
+                class="ok-text"
+                [ngModel]="passedCharacters"
+                name="passedCharacters" ngDefaultControl>{{passedCharacters}}</span>
+        </div>
+        <div class="right-text">
+            <span 
+                id="typ3rtext" 
+                class="typ3rtext" 
+                [ngModel]="renderedText"
+                name="renderedText" ngDefaultControl>{{renderedText}}</span>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #areYouReady>
+    <div class="ready-question">
+    <h1>Are you ready?</h1>
+    <button (click)="setReady(true)">Start</button>
+    </div>
+</ng-template>  

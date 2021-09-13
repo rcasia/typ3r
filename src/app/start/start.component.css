@@ -1,0 +1,61 @@
+.left-text {
+    display: flex;
+    justify-content: flex-end;
+    width: 300px;
+}
+
+.right-text {
+    width: 800px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#text-view {
+    position: fixed;
+    top: 300px;
+    left: 0;
+    user-select: none;
+    font-size: 3em;
+    width: 100%;
+    display: flex;
+    white-space: pre;
+    transition: color 0.1s;
+}
+
+.typ3rtext {
+    border-left: blue 1px solid;
+}
+
+
+.ok-text {
+    text-align: right;
+    color: blue;
+}
+
+.ready-question {
+    position: fixed;
+    left: 400px;
+    top:50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+}
+
+.ready-question button {
+    color: purple;
+    background-color: green;
+    border-style: none;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.wrong-alert {
+    color:red;
+}
+
+app-stats-counter {
+    display: flex;
+    width: 100%;
+    height: 200px;
+}
