@@ -15,6 +15,7 @@ export class StartComponent implements AfterViewInit {
     mistakes: 0,
     words: 0,
     characters: 0,
+    accuracy: 0,
     initialTime: 60
   }
 
@@ -39,7 +40,6 @@ export class StartComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.totalTextView = document.getElementById('text-view');
     this.typ3rTextElement = document.getElementById('typ3rtext')!;
-    console.log(this.stats.seconds)
     this.calculateWordsPerMinute();
 
   }
@@ -50,14 +50,9 @@ export class StartComponent implements AfterViewInit {
 
   checkCharacters(): void {
       document.addEventListener('keydown', e =>{
-          if(e.key === this.text.val()) {
-              this.correctInput(e.key)
-          } else {
-            if(e.key.length === 1){
-                this.wrongInput(e.key);
-            }
-            
-          }
+          if(e.key === this.text.val()) this.correctInput(e.key);
+          else if(e.key.length === 1) this.wrongInput(e.key);
+          this.calculateAccuracy();
       })
   }
 
@@ -85,5 +80,13 @@ export class StartComponent implements AfterViewInit {
   calculateWordsPerMinute() {
     const secondsFromZero = (this.data.initialTime - this.stats.seconds) || 1;
     this.wordsPerMinute = Math.floor(this.data.words * 60 / secondsFromZero) || 0
+  }
+
+  calculateAccuracy() {
+    const diff = this.data.characters || 0
+    const totalInputs = this.data.characters + this.data.mistakes;
+    const percentage = Math.round(( diff / totalInputs) * 100) 
+
+    this.data.accuracy = percentage;
   }
 }
