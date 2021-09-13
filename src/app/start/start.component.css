@@ -67,6 +67,13 @@
     font-size: 1.2em;
 }
 
+.velocimeter {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    font-size: 7em;
+}
+
 app-stats-counter {
     display: flex;
     width: 100%;
