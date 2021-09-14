@@ -66,7 +66,7 @@ export class StartComponent implements AfterViewInit {
   }
 
   wrongInput(key: string): void{
-    this.data.mistakes++;
+    if( this.data.characters ) this.data.mistakes++;
     this.wrongCharacter = key;
     setTimeout(()=> this.wrongCharacter = '', 300);
   }
