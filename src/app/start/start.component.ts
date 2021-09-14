@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, Input, AfterViewInit, DoCheck } from '@angular/core';
 import { Typ3rText } from '../core/model/typ3rtext';
 import { StatsCounterComponent } from '../stats-counter/stats-counter.component';
 import texts from '../_files/texts.json';
@@ -8,7 +8,7 @@ import texts from '../_files/texts.json';
   templateUrl: './start.component.html',
   styleUrls: ['./start.component.css']
 })
-export class StartComponent implements AfterViewInit {
+export class StartComponent implements AfterViewInit, DoCheck {
 
   @ViewChild(StatsCounterComponent) stats: any;
 
@@ -32,9 +32,21 @@ export class StartComponent implements AfterViewInit {
   totalTextView: any;
   typ3rTextElement: any;
 
+  checkCharactersBound = this.checkCharacters.bind(this)
 
   constructor() {
-    this.checkCharacters();
+    this.listenToKeystrokes();
+  }
+
+  ngDoCheck(){
+    //Checks if stats component is loaded
+    if(this.stats) {
+      //Remove keystrokes listener if text finished or timeout
+      if( this.text.isFinished() || this.stats.seconds === 0 ) {
+          this.setFinished(true);
+          document.removeEventListener('keydown', this.checkCharactersBound)
+      }
+    }
   }
 
   ngAfterViewInit() {
@@ -47,13 +59,14 @@ export class StartComponent implements AfterViewInit {
     this.finished = value;
   }
 
-  checkCharacters(): void {
-      document.addEventListener('keydown', e =>{
-          if(e.key === this.text.val()) this.correctInput(e.key);
-          else if(e.key.length === 1) this.wrongInput(e.key);
+  listenToKeystrokes(){
+      document.addEventListener('keydown',  this.checkCharactersBound)
+  }
+
+  checkCharacters({key}: any): void {
+          if(key === this.text.val()) this.correctInput(key);
+          else if(key.length === 1) this.wrongInput(key);
           this.calculateAccuracy();
-          if( this.text.isFinished() || this.stats.seconds === 0 ) this.setFinished(true);
-      })
   }
 
   correctInput(key: string): void {
