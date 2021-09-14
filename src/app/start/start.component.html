@@ -1,4 +1,4 @@
-<ng-template [ngIf]="ready" [ngIfElse]="areYouReady" >
+<ng-template [ngIf]="!finished" [ngIfElse]="finalStats" >
     <app-stats-counter [data]="data"></app-stats-counter>
     <div id="text-view" >
         <div class="left-text">
@@ -25,9 +25,11 @@
 
 </ng-template>
 
-<ng-template #areYouReady>
-    <div class="ready-question">
-    <h1>Are you ready?</h1>
-    <button (click)="setReady(true)">Start</button>
+<ng-template #finalStats>
+    <div class="final-stats">
+        <span>{{ wordsPerMinute }} WPM</span>
+        <span>{{ data.characters }} characters</span>
+        <span>{{ data.characters + data.mistakes }} keystrokes</span>
+        <span>{{ data.accuracy }}% accuracy</span>
     </div>
 </ng-template>  

@@ -22,7 +22,7 @@ export class StartComponent implements AfterViewInit {
 
   wordsPerMinute: number = 0;
 
-  ready: Boolean = true;
+  finished: Boolean = false;
 
   text = new Typ3rText(texts['texts'][1]['content']);
   renderedText = this.text.content;
@@ -41,11 +41,10 @@ export class StartComponent implements AfterViewInit {
     this.totalTextView = document.getElementById('text-view');
     this.typ3rTextElement = document.getElementById('typ3rtext')!;
     this.calculateWordsPerMinute();
-
   }
 
-  setReady(value: Boolean): void {
-    this.ready = value;
+  setFinished(value: Boolean): void {
+    this.finished = value;
   }
 
   checkCharacters(): void {
@@ -53,6 +52,7 @@ export class StartComponent implements AfterViewInit {
           if(e.key === this.text.val()) this.correctInput(e.key);
           else if(e.key.length === 1) this.wrongInput(e.key);
           this.calculateAccuracy();
+          if( this.text.isFinished() || this.stats.seconds === 0 ) this.setFinished(true);
       })
   }
 
@@ -62,7 +62,6 @@ export class StartComponent implements AfterViewInit {
       this.setCharacterRight(key);
       this.data.characters++;
       this.calculateWordsPerMinute();
-
   }
 
   wrongInput(key: string): void{

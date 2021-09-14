@@ -39,23 +39,31 @@
     color: rgba(138, 27, 134, 0.4)
 }
 
-.ready-question {
+.final-stats {
     position: fixed;
-    left: 400px;
+    left: 50%;
     top:50%;
+    transform: translateY(-50%) translateX(-50%);
+    background-color: rgba(138, 27, 134, 0.4);
+    padding: 50px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     color: white;
 }
 
-.ready-question button {
-    color: purple;
-    background-color: green;
-    border-style: none;
-    padding: 20px;
-    margin-top: 10px;
+.final-stats span {
+    font-size: 3em;
 }
+
+.final-stats button {
+    display: none;
+    background-color: blue;
+    border-style: none;
+    padding: 10px;
+    margin-top: 30px;
+}
+
 
 .wrong-alert {
     color:#e30a59;

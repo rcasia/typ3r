@@ -13,15 +13,16 @@ export class StatsCounterComponent implements OnInit, AfterViewInit {
   seconds: number = 60;
 
   constructor() {
-    this.setRemainingTime(this.seconds)
   }
 
   ngOnInit(): void {
+      this.seconds = this.data.initialTime;
+      this.setRemainingTime(this.seconds);
   }
 
   ngAfterViewInit(){
       this.waitOnFirstCharacter()
-  }
+  } 
 
   waitOnFirstCharacter(): void {
       const x = new Observable(subscriber =>{
