@@ -1,6 +1,7 @@
 import { Component, ViewChild, Input, AfterViewInit } from '@angular/core';
 import { Typ3rText } from '../core/model/typ3rtext';
 import { StatsCounterComponent } from '../stats-counter/stats-counter.component';
+import texts from '../_files/texts.json';
 
 @Component({
   selector: 'app-start',
@@ -22,9 +23,8 @@ export class StartComponent implements AfterViewInit {
   wordsPerMinute: number = 0;
 
   ready: Boolean = true;
-  placeholder = `The argument in favor of using filler text goes something like this: If you use real content in the design process, anytime you reach a review point you'll end up reviewing and negotiating the content itself and not the design. This will just slow down the design process. Design first, with real content in mind (of course!), but don't drop in the real content until the design is well on its way. Using filler text avoids the inevitable argumentation that accompanies the use of real content in the design process.`
 
-  text = new Typ3rText(this.placeholder);
+  text = new Typ3rText(texts['texts'][1]['content']);
   renderedText = this.text.content;
   passedCharacters: string= '';
   wrongCharacter: string = '';
