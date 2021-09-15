@@ -25,9 +25,9 @@ export class StartComponent implements AfterViewInit, DoCheck {
   finished: Boolean = false;
 
   text = new Typ3rText(texts['texts'][1]['content']);
-  renderedText = this.text.content;
+  renderedText = this.text.getContent();
   passedCharacters: string= '';
-  wrongCharacter: string = '';
+  wrongCharacters: string = '';
 
   totalTextView: any;
   typ3rTextElement: any;
@@ -64,7 +64,9 @@ export class StartComponent implements AfterViewInit, DoCheck {
   }
 
   checkCharacters({key}: any): void {
-          if(key === this.text.val()) this.correctInput(key);
+          if(this.wrongCharacters && key.length === 1) this.wrongInput(key);
+          else if(key === this.text.val()) this.correctInput(key);
+          else if(key === 'Backspace') this.deleteLastCharacter();
           else if(key.length === 1) this.wrongInput(key);
           this.calculateAccuracy();
   }
@@ -78,15 +80,29 @@ export class StartComponent implements AfterViewInit, DoCheck {
   }
 
   wrongInput(key: string): void{
-    if( this.data.characters ) this.data.mistakes++;
-    this.wrongCharacter = key;
-    setTimeout(()=> this.wrongCharacter = '', 300);
+    if(key === ' '){
+        this.passedCharacters += '×' + this.wrongCharacters + '× ';
+        this.renderedText = this.text.getContentFromCurrentWord();
+        this.wrongCharacters = '';
+
+    } else if ( this.data.characters ) {
+        this.data.mistakes++;
+        this.wrongCharacters += key;
+    }
   }
 
   setCharacterRight(character: string): void {
-   this.passedCharacters += character;
-
+    this.passedCharacters += character;
     this.renderedText = this.renderedText.slice(1);
+  }
+
+  setCharacterWrong(character: string): void {
+    this.renderedText = this.renderedText.slice(1);
+  }
+
+  deleteLastCharacter(): void {
+    this.wrongCharacters = this.wrongCharacters.slice(0, -1);
+    this.data.mistakes--;
   }
 
   calculateWordsPerMinute(): void {
