@@ -17,6 +17,7 @@ export class StartComponent implements AfterViewInit, DoCheck {
     words: 0,
     characters: 0,
     accuracy: 0,
+    keystrokes: 0,
     initialTime: 60
   }
 
@@ -76,10 +77,12 @@ export class StartComponent implements AfterViewInit, DoCheck {
       this.text.next();
       this.setCharacterRight(key);
       this.data.characters++;
+      this.data.keystrokes++;
       this.calculateWordsPerMinute();
   }
 
   wrongInput(key: string): void{
+    this.data.keystrokes++;
     if(key === ' '){
         this.passedCharacters += '×' + this.wrongCharacters + '× ';
         this.renderedText = this.text.getContentFromCurrentWord();
@@ -111,10 +114,6 @@ export class StartComponent implements AfterViewInit, DoCheck {
   }
 
   calculateAccuracy(): void {
-    const characters = this.data.characters;
-    const totalInputs = characters + this.data.mistakes;
-    const percentage = Math.round(( characters / totalInputs) * 100) || 0;
-
-    this.data.accuracy = percentage;
+    this.data.accuracy = Math.round(( this.data.characters / this.data.keystrokes) * 100) || 0;
    }
 }
