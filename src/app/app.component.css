@@ -6,12 +6,14 @@
 }
 
 body {
-    background-color: #12151F;
+    background-color: #21092a;
     color: #8a1b86;
     height: 100vh;
     width: 100%;
+    /* 
     animation: background-change 25s infinite alternate;
-}
+    */
+    }
 
 app-sidebar {
     position: absolute;
